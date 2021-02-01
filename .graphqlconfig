@@ -1,0 +1,17 @@
+{
+  "name": "Shopify",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://hades-active.myshopify.com/api/2021-01/graphql.json",
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": "71d854caad2535509afa487cac70d872"
+        },
+        "introspect": true
+      }
+    }
+  }
+}
