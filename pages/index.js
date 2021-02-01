@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import {
     AppBar, Badge,
     Box,
@@ -19,7 +20,7 @@ import useShopifyAddLineItem from "../utils/shopify.addLineItem";
 import {useEffect, useState} from "react";
 
 export default function Home(products) {
-
+//    console.log(products)
     const [tank, shorts] = products.collectionByHandle.products.edges
 //     console.log(tank)
 
@@ -28,11 +29,11 @@ export default function Home(products) {
     const [tankPrice, shortsPrice] = tank.node.variants.edges
     const [smallTank, mediumTank, largeTank, xlargeTank] = tank.node.variants.edges
     const [smallShort, mediumShort, largeShort, xlargeShort] = shorts.node.variants.edges
-//     console.log(smallTank, mediumTank, largeTank, xlargeTank)
+    // console.log(smallTank, mediumTank, largeTank, xlargeTank)
     // console.log(otherBum)
     // console.log(weight.node.transformedSrc)
 
-    const [checkout, setCheckout] = useState()
+    const [checkout, setCheckout] = useState({webUrl: '/'})
     const [cart, setCart] = useState(0)
     const [size, setSize] = useState('')
     const [tankTop, setTankTop] = useState()
@@ -47,7 +48,7 @@ export default function Home(products) {
     }
 
     function handleClick(variant) {
-         console.log(checkout)
+//        console.log(checkout)
 
         // console.log(id)
         useShopifyAddLineItem(JSON.stringify(checkout.id), {quantity: 1, variantId: JSON.stringify(size)})
@@ -74,11 +75,15 @@ export default function Home(products) {
                 <script src="http://localhost:8097"></script>
             </Head>
             <AppBar style={style.appBar} position='sticky'>
-                <Typography variant='h4'>Shop</Typography>
+                {/*<Typography variant='h4'>Shop</Typography>*/}
                 <img style={style.logo} src='/logo.jpg'/>
-                <Badge badgeContent={cart.length} color='error'>
-                    <ShoppingCartIcon fontSize='large'/>
-                </Badge>
+
+                    <Link href={checkout.webUrl} passHref>
+                        <a><Badge badgeContent={cart.length} color='error'>
+                            <ShoppingCartIcon fontSize='large'/>
+                        </Badge></a>
+                </Link>
+
             </AppBar>
             <Box id='container' style={style.container}>
                 <embed style={style.landing} src='/cheetahfront.jpg'/>
@@ -141,7 +146,8 @@ export default function Home(products) {
                                 </Select>
                             </FormControl>
                         </CardContent>
-                        <Button onClick={() => handleClick(short)} style={style.button} variant='contained'>Add to Cart</Button>
+                        <Button onClick={() => handleClick(short)} style={style.button} variant='contained'>Add to
+                            Cart</Button>
                     </Card>
                 </Grid>
             </Grid>
@@ -149,8 +155,9 @@ export default function Home(products) {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const data = await useShopifyGraphQL()
+    const checkout = await useShopifyCheckout()
     return {
         props: data
     }
