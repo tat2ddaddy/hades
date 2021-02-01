@@ -6,7 +6,7 @@ import {
     Button,
     Card,
     CardContent,
-    CardMedia, FormControl,
+    CardMedia, Divider, FormControl,
     Grid,
     InputLabel,
     MenuItem,
@@ -86,7 +86,7 @@ export default function Home(products) {
 
             </AppBar>
             <Box id='container' style={style.container}>
-                <embed style={style.landing} src='/cheetahfront.jpg'/>
+                <img style={style.landing} src='/cheetahfront.jpg'/>
                 <div style={style.overlayTop}>
                     <strong>Introducing the Cheetah Collection</strong>
                 </div>
@@ -101,8 +101,8 @@ export default function Home(products) {
                 </div>
                 <div style={style.words}>
                     <h1>Cheetah Shorts</h1>
-                    <div>blah blah blah</div>
-                    <div>more blah blah blah</div>
+                    <div>Our V Wrap Cheetah shorts feature a v wrap high waistline, squat proof,</div>
+                    <div>4-way stretch with sweat-wicking fabric for even your most intense workouts</div>
                 </div>
                 <img style={style.tank} src='/cheetahShorts.jpg'/>
             </Box>
@@ -151,6 +151,14 @@ export default function Home(products) {
                     </Card>
                 </Grid>
             </Grid>
+            <br />
+            <Grid style={{fontFamily: 'Oswald', color: 'grey'}} container direction="row" justify="space-between" alignItems="center">
+                <Link href='/tos'><a>Terms of Service</a></Link>
+                <Link href='/privacypolicy'><a>Privacy Policy</a></Link>
+                <Link href='/shippingpolicy'><a>Shipping Policy</a></Link>
+                <Link href='/returnpolicy'><a>Return Policy</a></Link>
+            </Grid>
+            <br />
         </div>
     )
 }
@@ -203,8 +211,8 @@ const style = {
     },
     overlayTop: {
         position: 'absolute',
-        top: '37%',
-        left: '10%',
+        top: '25%',
+        left: '5%',
         fontSize: 28,
         fontFamily: 'Oswald'
     },
@@ -212,7 +220,7 @@ const style = {
         position: 'absolute',
         fontSize: 28,
         fontFamily: 'Oswald',
-        top: '41%',
+        top: '35%',
         left: '10%'
     },
     collection: {
