@@ -113,8 +113,8 @@ export default function Home(products) {
                         <CardMedia image={weight.node.transformedSrc} style={style.image}/>
                         <CardContent>
                             <div>{tank.node.title}</div>
-                            <div>{tankPrice.node.priceV2.amount}</div>
-                            <FormControl>
+                            <div>${tankPrice.node.priceV2.amount}</div>
+                            <FormControl fullWidth={true}>
                                 <InputLabel id='tank_select_size_label'>Size</InputLabel>
                                 <Select labelId='tank_select_size_label' id='tank_select_size' value={size}
                                         onChange={handleTankChange}>
@@ -134,8 +134,8 @@ export default function Home(products) {
                         <CardMedia image={otherBum.node.transformedSrc} style={style.image}/>
                         <CardContent>
                             <div>{shorts.node.title}</div>
-                            <div>{shortsPrice.node.priceV2.amount}</div>
-                            <FormControl>
+                            <div>${shortsPrice.node.priceV2.amount}</div>
+                            <FormControl fullWidth={true}>
                                 <InputLabel id='short_select_size_label'>Size</InputLabel>
                                 <Select labelId='short_select_size_label' id='short_select_size' value={size}
                                         onChange={handleShortChange}>
